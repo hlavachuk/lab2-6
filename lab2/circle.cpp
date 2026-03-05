@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cmath>
 
+using namespace std;
+
 Circle::Circle() : Circle(1) {}
 
 Circle::Circle(double radius)
@@ -9,7 +11,7 @@ Circle::Circle(double radius)
 }
 
 Circle::~Circle() {
-    std::cout << "Circle destroyed\n";
+    cout << "Circle destroyed\n";
 }
 
 double Circle::area() const {
@@ -21,8 +23,8 @@ double Circle::perimeter() const {
 }
 
 void Circle::display() const {
-    std::cout << "Circle radius: " << radius
+    cout << "Circle radius: " << radius
         << ", Area: " << area()
         << ", Perimeter: " << perimeter()
-        << std::endl;
+        << endl;
 }
