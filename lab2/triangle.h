@@ -1,6 +1,8 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
+using namespace std;
+
 class Triangle {
 private:
     double a;
