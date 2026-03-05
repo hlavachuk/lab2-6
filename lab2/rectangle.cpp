@@ -1,6 +1,8 @@
 #include "Rectangle.h"
 #include <iostream>
 
+using namespace std;
+
 Rectangle::Rectangle() : Rectangle(1, 1) {}
 
 Rectangle::Rectangle(double width, double height)
@@ -8,7 +10,7 @@ Rectangle::Rectangle(double width, double height)
 }
 
 Rectangle::~Rectangle() {
-    std::cout << "Rectangle destroyed\n";
+    cout << "Rectangle destroyed\n";
 }
 
 double Rectangle::area() const {
@@ -20,9 +22,9 @@ double Rectangle::perimeter() const {
 }
 
 void Rectangle::display() const {
-    std::cout << "Rectangle width: " << width
+    cout << "Rectangle width: " << width
         << ", height: " << height
         << ", Area: " << area()
         << ", Perimeter: " << perimeter()
-        << std::endl;
+        << endl;
 }
