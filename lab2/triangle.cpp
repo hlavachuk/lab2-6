@@ -2,6 +2,8 @@
 #include <iostream>
 #include <cmath>
 
+using namespace std;
+
 Triangle::Triangle() : Triangle(1, 1, 1) {}
 
 Triangle::Triangle(double a, double b, double c)
@@ -9,7 +11,7 @@ Triangle::Triangle(double a, double b, double c)
 }
 
 Triangle::~Triangle() {
-    std::cout << "triangle destroyed\n";
+    cout << "triangle destroyed\n";
 }
 
 double Triangle::perimeter() const {
@@ -22,8 +24,8 @@ double Triangle::area() const {
 }
 
 void Triangle::display() const {
-    std::cout << "triangle sides: " << a << ", " << b << ", " << c
+    cout << "triangle sides: " << a << ", " << b << ", " << c
         << ", area: " << area()
         << ", perimeter: " << perimeter()
-        << std::endl;
+        << endl;
 }
