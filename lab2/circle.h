@@ -9,7 +9,7 @@ private:
 
 public:
     Circle();
-    Circle(double radius = 1);
+    Circle(double radius);
 
     ~Circle();
 
