@@ -11,26 +11,33 @@ private:
     double b;
     double c;
 
-    static int triangleCount;   
+    static int triangleCount;
 
 public:
+   
     Triangle();
     Triangle(double a, double b, double c);
 
-    Triangle(const Triangle& other);
-    Triangle(Triangle&& other);
+    Triangle(const Triangle& other);   
+    Triangle(Triangle&& other);        
 
     ~Triangle();
 
+   
     double perimeter() const;
     double area() const;
 
     void display() const;
     void setA(double a);
 
+   
     static int getCount();
 
+  
     Triangle operator+(const Triangle& other);
+    bool operator==(const Triangle& other);
+
+    Triangle operator-();
 
     friend ostream& operator<<(ostream& os, const Triangle& t);
     friend istream& operator>>(istream& is, Triangle& t);

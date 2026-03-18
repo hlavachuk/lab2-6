@@ -4,15 +4,17 @@
 
 using namespace std;
 
+
 int Triangle::triangleCount = 0;
 
-Triangle::Triangle() : Triangle(1, 1, 1) {
-}
+
+Triangle::Triangle() : Triangle(1, 1, 1) {}
 
 Triangle::Triangle(double a, double b, double c)
     : a(a), b(b), c(c) {
     triangleCount++;
 }
+
 
 Triangle::Triangle(const Triangle& other)
     : a(other.a), b(other.b), c(other.c) {
@@ -20,19 +22,24 @@ Triangle::Triangle(const Triangle& other)
     cout << "Copy constructor called\n";
 }
 
+
 Triangle::Triangle(Triangle&& other)
     : a(other.a), b(other.b), c(other.c) {
+
     other.a = 0;
     other.b = 0;
     other.c = 0;
+
     triangleCount++;
     cout << "Move constructor called\n";
 }
 
+
 Triangle::~Triangle() {
-    cout << "triangle destroyed\n";
+    cout << "Triangle destroyed\n";
     triangleCount--;
 }
+
 
 double Triangle::perimeter() const {
     return a + b + c;
@@ -44,22 +51,32 @@ double Triangle::area() const {
 }
 
 void Triangle::display() const {
-    cout << "triangle sides: " << a << ", " << b << ", " << c
+    cout << "Triangle sides: " << a << ", " << b << ", " << c
         << ", area: " << area()
         << ", perimeter: " << perimeter()
         << endl;
 }
 
+
 void Triangle::setA(double a) {
-    this->a = a;   
+    this->a = a;
 }
 
 int Triangle::getCount() {
     return triangleCount;
 }
 
+
 Triangle Triangle::operator+(const Triangle& other) {
     return Triangle(a + other.a, b + other.b, c + other.c);
+}
+
+bool Triangle::operator==(const Triangle& other) {
+    return (a == other.a && b == other.b && c == other.c);
+}
+
+Triangle Triangle::operator-() {
+    return Triangle(-a, -b, -c);
 }
 
 ostream& operator<<(ostream& os, const Triangle& t) {
