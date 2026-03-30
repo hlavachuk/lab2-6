@@ -1,22 +1,29 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
+#include "triangle.h"
 using namespace std;
 
-class Circle {
+class Circle : public Shape {
 private:
     double radius;
+    Point center;   // HAS-A
 
 public:
     Circle();
-    Circle(double radius);
+    Circle(double radius, Point center = Point());
+
+    Circle(const Circle& other);
+    Circle(Circle&& other) noexcept;
+    Circle& operator=(const Circle& other);
 
     ~Circle();
 
-    double area() const;
-    double perimeter() const;
+    double area() const override;
+    double perimeter() const override;
+    void display() const override;
 
-    void display() const;
+    static int getCount();
 };
 
 #endif
