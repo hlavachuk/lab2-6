@@ -51,6 +51,18 @@ void Rectangle::display() const {
     cout << "perimeter: " << perimeter() << endl;
 }
 
+void Rectangle::info() const {
+    cout << "This is a rectangle" << endl;
+}
+
+void Rectangle::draw() const {
+    cout << "Drawing rectangle" << endl;
+}
+
+void Rectangle::showType() const {
+    cout << "Rectangle method" << endl;
+}
+
 int Rectangle::getCount() {
     return Shape::getCount();
 }

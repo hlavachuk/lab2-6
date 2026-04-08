@@ -8,7 +8,7 @@ class Rectangle : public Polygon {
 private:
     double width;
     double height;
-    Point topLeft;   // HAS-A
+    Point topLeft;
 
 public:
     Rectangle();
@@ -23,6 +23,9 @@ public:
     double area() const override;
     double perimeter() const override;
     void display() const override;
+    void info() const override;
+    void draw() const override;
+    void showType() const;
 
     static int getCount();
 };
