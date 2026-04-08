@@ -27,7 +27,7 @@ public:
     void display() const;
 };
 
-class Triangle : public Polygon {
+class Triangle final : public Polygon {
 private:
     double a, b, c;
     Point p1, p2, p3;
@@ -47,6 +47,9 @@ public:
     double area() const override;
     double perimeter() const override;
     void display() const override;
+    void info() const override;
+    void draw() const override;
+    void showType() const;
 
     Triangle operator+(const Triangle& other) const;
     Triangle operator-() const;

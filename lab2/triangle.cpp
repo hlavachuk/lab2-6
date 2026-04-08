@@ -101,6 +101,18 @@ void Triangle::display() const {
     cout << "perimeter: " << perimeter() << endl;
 }
 
+void Triangle::info() const {
+    cout << "This is a triangle" << endl;
+}
+
+void Triangle::draw() const {
+    cout << "Drawing triangle" << endl;
+}
+
+void Triangle::showType() const {
+    cout << "Triangle method" << endl;
+}
+
 Triangle Triangle::operator+(const Triangle& other) const {
     return Triangle(a + other.a, b + other.b, c + other.c, p1, p2, p3);
 }
