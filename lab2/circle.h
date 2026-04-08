@@ -7,7 +7,7 @@ using namespace std;
 class Circle : public Shape {
 private:
     double radius;
-    Point center;   // HAS-A
+    Point center;
 
 public:
     Circle();
@@ -22,6 +22,9 @@ public:
     double area() const override;
     double perimeter() const override;
     void display() const override;
+    void info() const override;
+    void draw() const override;
+    void showType() const;
 
     static int getCount();
 };

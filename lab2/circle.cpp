@@ -49,6 +49,18 @@ void Circle::display() const {
     cout << "perimeter: " << perimeter() << endl;
 }
 
+void Circle::info() const {
+    cout << "This is a circle" << endl;
+}
+
+void Circle::draw() const {
+    cout << "Drawing circle" << endl;
+}
+
+void Circle::showType() const {
+    cout << "Circle method" << endl;
+}
+
 int Circle::getCount() {
     return Shape::getCount();
 }
