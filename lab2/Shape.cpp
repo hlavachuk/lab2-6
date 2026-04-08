@@ -29,6 +29,14 @@ void Shape::display() const {
     cout << "Shape name: " << name << endl;
 }
 
+void Shape::info() const {
+    cout << "This is a shape: " << name << endl;
+}
+
+void Shape::showType() const {
+    cout << "Base Shape method" << endl;
+}
+
 int Shape::getCount() {
     return count;
 }
