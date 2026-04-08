@@ -28,3 +28,11 @@ void Polygon::display() const {
     Shape::display();
     cout << "Sides count: " << sidesCount << endl;
 }
+
+void Polygon::info() const {
+    cout << "This is a polygon with " << sidesCount << " sides" << endl;
+}
+
+void Polygon::showType() const {
+    cout << "Polygon method" << endl;
+}

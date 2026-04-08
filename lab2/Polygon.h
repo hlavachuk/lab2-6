@@ -16,6 +16,8 @@ public:
     virtual ~Polygon();
 
     void display() const override;
+    void info() const override;
+    void showType() const;
 };
 
 #endif
