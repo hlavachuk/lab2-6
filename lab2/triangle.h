@@ -1,9 +1,9 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
+#include "polygon.h"
 #include <iostream>
 #include <cmath>
-#include <string>
 using namespace std;
 
 class Point {
@@ -27,43 +27,10 @@ public:
     void display() const;
 };
 
-class Shape {
-protected:
-    string name;
-    static int count;
-
-public:
-    Shape(string name = "Shape");
-    Shape(const Shape& other);
-    Shape(Shape&& other) noexcept;
-    Shape& operator=(const Shape& other);
-    virtual ~Shape();
-
-    virtual double area() const = 0;
-    virtual double perimeter() const = 0;
-    virtual void display() const;
-
-    static int getCount();
-};
-
-class Polygon : public Shape {
-protected:
-    int sidesCount;
-
-public:
-    Polygon(string name = "Polygon", int sidesCount = 0);
-    Polygon(const Polygon& other);
-    Polygon(Polygon&& other) noexcept;
-    Polygon& operator=(const Polygon& other);
-    virtual ~Polygon();
-
-    void display() const override;
-};
-
 class Triangle : public Polygon {
 private:
     double a, b, c;
-    Point p1, p2, p3;   // HAS-A relationship
+    Point p1, p2, p3;
     static int triangleCount;
 
 public:

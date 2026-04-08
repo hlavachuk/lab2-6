@@ -1,7 +1,6 @@
 #include "triangle.h"
 using namespace std;
 
-int Shape::count = 0;
 int Triangle::triangleCount = 0;
 
 // Point
@@ -33,68 +32,6 @@ void Point::setY(double y) { this->y = y; }
 
 void Point::display() const {
     cout << "(" << x << ", " << y << ")";
-}
-
-// Shape
-
-Shape::Shape(string name) : name(name) {
-    count++;
-}
-
-Shape::Shape(const Shape& other) : name(other.name) {
-    count++;
-}
-
-Shape::Shape(Shape&& other) noexcept : name(other.name) {
-    other.name = "MovedShape";
-    count++;
-}
-
-Shape& Shape::operator=(const Shape& other) {
-    if (this != &other) {
-        name = other.name;
-    }
-    return *this;
-}
-
-Shape::~Shape() {}
-
-void Shape::display() const {
-    cout << "Shape name: " << name << endl;
-}
-
-int Shape::getCount() {
-    return count;
-}
-
-// Polygon
-
-Polygon::Polygon(string name, int sidesCount)
-    : Shape(name), sidesCount(sidesCount) {
-}
-
-Polygon::Polygon(const Polygon& other)
-    : Shape(other), sidesCount(other.sidesCount) {
-}
-
-Polygon::Polygon(Polygon&& other) noexcept
-    : Shape(move(other)), sidesCount(other.sidesCount) {
-    other.sidesCount = 0;
-}
-
-Polygon& Polygon::operator=(const Polygon& other) {
-    if (this != &other) {
-        Shape::operator=(other);
-        sidesCount = other.sidesCount;
-    }
-    return *this;
-}
-
-Polygon::~Polygon() {}
-
-void Polygon::display() const {
-    Shape::display();
-    cout << "Sides count: " << sidesCount << endl;
 }
 
 // Triangle
