@@ -6,6 +6,22 @@
 
 using namespace std;
 
+void showByPointer(Shape* shape) { // полік через вказівник коли через Shape* викликається метод дочірнього класу динамічний або Runtime
+    shape->display();
+    shape->info();
+    shape->draw();
+    cout << "Area: " << shape->area() << endl;
+    cout << "Perimeter: " << shape->perimeter() << endl;
+}
+
+void showByReference(const Shape& shape) { // полік через посилання коли через Shape* викликається метод дочірнього класу
+    shape.display();
+    shape.info();
+    shape.draw();
+    cout << "Area: " << shape.area() << endl;
+    cout << "Perimeter: " << shape.perimeter() << endl;
+}
+
 int main() {
 
     cout << "=== Constructors ===\n";
@@ -76,6 +92,44 @@ int main() {
     Triangle t8;
     cin >> t8;
     cout << t8 << endl;
+
+    cout << "\n=== Static Method Binding ===\n";
+
+    Shape* basePtr = &c2;
+    basePtr->showType(); //Static binding  виклик не virtual методу (98 99 рядок)
+    c2.showType();
+
+    cout << "\n=== Run-time polymorphism with pointer ===\n";
+
+    Shape* shapes[3];
+    shapes[0] = &c2;
+    shapes[1] = &r2;
+    shapes[2] = &t2;
+
+    for (int i = 0; i < 3; i++) {
+        showByPointer(shapes[i]);
+        cout << endl;
+    }
+
+    cout << "\n=== Run-time polymorphism with reference ===\n";
+
+    showByReference(c2);
+    cout << endl;
+    showByReference(r2);
+    cout << endl;
+    showByReference(t2);
+    cout << endl;
+
+    cout << "\n=== Interface Drawable ===\n";
+
+    Drawable* drawables[3]; // Використання інтерфейс
+    drawables[0] = &c2;
+    drawables[1] = &r2;
+    drawables[2] = &t2;
+
+    for (int i = 0; i < 3; i++) {
+        drawables[i]->draw();
+    }
 
     return 0;
 }
