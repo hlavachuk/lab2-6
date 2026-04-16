@@ -1,60 +1,23 @@
 #include "triangle.h"
+#include <cmath>
+
 using namespace std;
 
 int Triangle::triangleCount = 0;
 
-// Point
-
-Point::Point(double x, double y) : x(x), y(y) {}
-
-Point::Point(const Point& other) : x(other.x), y(other.y) {}
-
-Point::Point(Point&& other) noexcept : x(other.x), y(other.y) {
-    other.x = 0;
-    other.y = 0;
-}
-
-Point& Point::operator=(const Point& other) {
-    if (this != &other) {
-        x = other.x;
-        y = other.y;
-    }
-    return *this;
-}
-
-Point::~Point() {}
-
-double Point::getX() const { return x; }
-double Point::getY() const { return y; }
-
-void Point::setX(double x) { this->x = x; }
-void Point::setY(double y) { this->y = y; }
-
-void Point::display() const {
-    cout << "(" << x << ", " << y << ")";
-}
-
-// Triangle
-
-Triangle::Triangle()
-    : Polygon("Triangle", 3), a(1), b(1), c(1), p1(0, 0), p2(1, 0), p3(0, 1) {
+Triangle::Triangle() : a(1), b(1), c(1) {
     triangleCount++;
 }
 
-Triangle::Triangle(double a, double b, double c, Point p1, Point p2, Point p3)
-    : Polygon("Triangle", 3), a(a), b(b), c(c), p1(p1), p2(p2), p3(p3) {
+Triangle::Triangle(double a, double b, double c) : a(a), b(b), c(c) {
     triangleCount++;
 }
 
-Triangle::Triangle(const Triangle& other)
-    : Polygon(other), a(other.a), b(other.b), c(other.c),
-    p1(other.p1), p2(other.p2), p3(other.p3) {
+Triangle::Triangle(const Triangle& other) : a(other.a), b(other.b), c(other.c) {
     triangleCount++;
 }
 
-Triangle::Triangle(Triangle&& other) noexcept
-    : Polygon(move(other)), a(other.a), b(other.b), c(other.c),
-    p1(move(other.p1)), p2(move(other.p2)), p3(move(other.p3)) {
+Triangle::Triangle(Triangle&& other) noexcept : a(other.a), b(other.b), c(other.c) {
     other.a = 0;
     other.b = 0;
     other.c = 0;
@@ -63,19 +26,11 @@ Triangle::Triangle(Triangle&& other) noexcept
 
 Triangle& Triangle::operator=(const Triangle& other) {
     if (this != &other) {
-        Polygon::operator=(other);
         a = other.a;
         b = other.b;
         c = other.c;
-        p1 = other.p1;
-        p2 = other.p2;
-        p3 = other.p3;
     }
     return *this;
-}
-
-Triangle::~Triangle() {
-    cout << "triangle destroyed" << endl;
 }
 
 double Triangle::perimeter() const {
@@ -83,55 +38,40 @@ double Triangle::perimeter() const {
 }
 
 double Triangle::area() const {
-    double s = perimeter() / 2;
-    return sqrt(s * (s - a) * (s - b) * (s - c));
+    double p = perimeter() / 2;
+    return sqrt(p * (p - a) * (p - b) * (p - c));
 }
 
 void Triangle::display() const {
-    Polygon::display();
-    cout << "triangle sides: " << a << ", " << b << ", " << c << endl;
-    cout << "points: ";
-    p1.display();
-    cout << " ";
-    p2.display();
-    cout << " ";
-    p3.display();
-    cout << endl;
-    cout << "area: " << area() << endl;
-    cout << "perimeter: " << perimeter() << endl;
+    cout << "Triangle: a = " << a << ", b = " << b << ", c = " << c << endl;
 }
 
 void Triangle::info() const {
-    cout << "This is a triangle" << endl;
+    cout << "This is triangle" << endl;
 }
 
 void Triangle::draw() const {
     cout << "Drawing triangle" << endl;
 }
 
-void Triangle::showType() const {
-    cout << "Triangle method" << endl;
-}
-
 Triangle Triangle::operator+(const Triangle& other) const {
-    return Triangle(a + other.a, b + other.b, c + other.c, p1, p2, p3);
+    return Triangle(a + other.a, b + other.b, c + other.c);
 }
 
-Triangle Triangle::operator-() const {
-    return Triangle(a, b, c, p1, p2, p3);
+Triangle Triangle::operator-(const Triangle& other) const {
+    return Triangle(a - other.a, b - other.b, c - other.c);
 }
 
-ostream& operator<<(ostream& out, const Triangle& t) {
-    out << "Triangle: sides = " << t.a << ", " << t.b << ", " << t.c;
-    return out;
+ostream& operator<<(ostream& os, const Triangle& t) {
+    os << t.a << " " << t.b << " " << t.c;
+    return os;
 }
 
-istream& operator>>(istream& in, Triangle& t) {
-    cout << "Enter sides a, b, c: ";
-    in >> t.a >> t.b >> t.c;
-    return in;
+istream& operator>>(istream& is, Triangle& t) {
+    is >> t.a >> t.b >> t.c;
+    return is;
 }
 
-int Triangle::getTriangleCount() {
-    return triangleCount;
+Triangle::~Triangle() {
+    cout << "Triangle destroyed" << endl;
 }
