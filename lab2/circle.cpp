@@ -1,34 +1,32 @@
 #include "circle.h"
+#include <cmath>
+
 using namespace std;
 
-Circle::Circle()
-    : Shape("Circle"), radius(1), center(0, 0) {
+int Circle::circleCount = 0;
+
+Circle::Circle() : radius(1) {
+    circleCount++;
 }
 
-Circle::Circle(double radius, Point center)
-    : Shape("Circle"), radius(radius), center(center) {
+Circle::Circle(double radius) : radius(radius) {
+    circleCount++;
 }
 
-Circle::Circle(const Circle& other)
-    : Shape(other), radius(other.radius), center(other.center) {
+Circle::Circle(const Circle& other) : radius(other.radius) {
+    circleCount++;
 }
 
-Circle::Circle(Circle&& other) noexcept
-    : Shape(move(other)), radius(other.radius), center(move(other.center)) {
+Circle::Circle(Circle&& other) noexcept : radius(other.radius) {
     other.radius = 0;
+    circleCount++;
 }
 
 Circle& Circle::operator=(const Circle& other) {
     if (this != &other) {
-        Shape::operator=(other);
         radius = other.radius;
-        center = other.center;
     }
     return *this;
-}
-
-Circle::~Circle() {
-    cout << "Circle destroyed" << endl;
 }
 
 double Circle::area() const {
@@ -40,27 +38,35 @@ double Circle::perimeter() const {
 }
 
 void Circle::display() const {
-    Shape::display();
-    cout << "radius: " << radius << endl;
-    cout << "center: ";
-    center.display();
-    cout << endl;
-    cout << "area: " << area() << endl;
-    cout << "perimeter: " << perimeter() << endl;
+    cout << "Circle: radius = " << radius << endl;
 }
 
 void Circle::info() const {
-    cout << "This is a circle" << endl;
+    cout << "This is circle" << endl;
 }
 
 void Circle::draw() const {
     cout << "Drawing circle" << endl;
 }
 
-void Circle::showType() const {
-    cout << "Circle method" << endl;
+Circle Circle::operator+(const Circle& other) const {
+    return Circle(radius + other.radius);
 }
 
-int Circle::getCount() {
-    return Shape::getCount();
+Circle Circle::operator-(const Circle& other) const {
+    return Circle(radius - other.radius);
+}
+
+ostream& operator<<(ostream& os, const Circle& c) {
+    os << c.radius;
+    return os;
+}
+
+istream& operator>>(istream& is, Circle& c) {
+    is >> c.radius;
+    return is;
+}
+
+Circle::~Circle() {
+    cout << "Circle destroyed" << endl;
 }
